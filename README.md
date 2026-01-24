@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Website
+
+A modern, responsive portfolio website built with Next.js 14, TypeScript, and Tailwind CSS.
+
+## Tech Stack
+
+- **Frontend**: Next.js 14 + React 18 + TypeScript
+- **Styling**: Tailwind CSS
+- **State Management**: Redux Toolkit
+- **Database**: MongoDB with Mongoose
+- **Email**: Nodemailer with SMTP
+- **Testing**: Jest + React Testing Library + Playwright
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js 18.17 or later
+- npm or yarn
+- MongoDB (optional, for database features)
+
+### Installation
+
+1. Clone the repository:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <repository-url>
+cd portfolio
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Install dependencies:
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Copy the environment example file:
+```bash
+cp .env.local.example .env.local
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. Update `.env.local` with your configuration (optional for development).
 
-## Learn More
+5. Run the development server:
+```bash
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Available Scripts
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm test` - Run Jest unit tests
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:coverage` - Run tests with coverage report
+- `npm run test:e2e` - Run Playwright E2E tests
+- `npm run test:e2e:ui` - Run E2E tests with UI
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+src/
+├── app/                    # Next.js App Router
+│   ├── api/               # API routes
+│   │   ├── contact/       # Contact form endpoint
+│   │   └── profile/       # Profile data endpoint
+│   ├── globals.css        # Global styles
+│   ├── layout.tsx         # Root layout
+│   └── page.tsx           # Home page
+├── components/
+│   ├── layout/            # Layout components
+│   ├── sections/          # Page sections
+│   └── ui/                # Reusable UI components
+├── data/                  # Static data
+├── lib/                   # Utilities (MongoDB, email)
+├── store/                 # Redux store
+└── types/                 # TypeScript types
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Environment Variables
+
+| Variable | Description |
+|----------|-------------|
+| `MONGODB_URI` | MongoDB connection string |
+| `SMTP_HOST` | SMTP server host |
+| `SMTP_PORT` | SMTP server port |
+| `SMTP_USER` | SMTP username |
+| `SMTP_PASS` | SMTP password |
+| `CONTACT_EMAIL` | Email for contact form submissions |
+
+## Deployment
+
+The project is configured for deployment on Vercel. Push to the `main` branch to trigger automatic deployment.
+
+### Manual Deployment
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. Start the production server:
+```bash
+npm run start
+```
+
+## License
+
+MIT
