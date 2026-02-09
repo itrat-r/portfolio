@@ -19,8 +19,8 @@ const transporter = nodemailer.createTransport({
 
 export async function sendEmail({ to, subject, text, html }: EmailOptions) {
   if (!process.env.SMTP_USER || !process.env.SMTP_PASS) {
-    console.warn('SMTP credentials not configured, skipping email send');
-    return { success: false, error: 'Email not configured' };
+    console.error('SMTP credentials not configured. SMTP_USER:', !!process.env.SMTP_USER, 'SMTP_PASS:', !!process.env.SMTP_PASS);
+    throw new Error('Email not configured - missing SMTP credentials');
   }
 
   try {
@@ -32,10 +32,11 @@ export async function sendEmail({ to, subject, text, html }: EmailOptions) {
       html: html || text,
     });
 
+    console.log('Email sent successfully:', info.messageId);
     return { success: true, messageId: info.messageId };
   } catch (error) {
     console.error('Failed to send email:', error);
-    return { success: false, error: 'Failed to send email' };
+    throw error;
   }
 }
 
